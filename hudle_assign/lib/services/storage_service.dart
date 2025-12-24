@@ -10,7 +10,6 @@ class StorageService {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  // Save last searched city
   Future<void> saveLastSearchedCity(String cityName) async {
     await _prefs.setString(AppConstants.lastSearchedCity, cityName);
   }
@@ -20,17 +19,17 @@ class StorageService {
     return _prefs.getString(AppConstants.lastSearchedCity);
   }
 
-  // Save search history
+  // search history
   Future<void> addToSearchHistory(String cityName) async {
     List<String> history = getSearchHistory();
 
-    // Remove if already exists
+    // Remove if exists
     history.remove(cityName);
 
     // Add to beginning
     history.insert(0, cityName);
 
-    // Keep only last 10 searches
+    // Keep last 10 searches
     if (history.length > 10) {
       history = history.sublist(0, 10);
     }
@@ -38,7 +37,7 @@ class StorageService {
     await _prefs.setStringList(AppConstants.searchHistory, history);
   }
 
-  // Get search history
+  // Get history
   List<String> getSearchHistory() {
     return _prefs.getStringList(AppConstants.searchHistory) ?? [];
   }

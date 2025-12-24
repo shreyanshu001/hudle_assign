@@ -1,7 +1,5 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class AppConstants {
-  static final String apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
+  static final String apiKey = '3d413f63725b17b2c0ce848740a5c53a';
   static const String baseUrl = 'https://api.openweathermap.org/data/2.5';
 
   static const String lastSearchedCity = 'last_searched_city';
