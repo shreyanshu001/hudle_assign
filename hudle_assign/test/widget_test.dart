@@ -7,13 +7,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:hudle_assign/main.dart';
+import 'package:hudle_assign/repositories/weather_repository.dart';
+import 'package:hudle_assign/services/api_service.dart';
+import 'package:hudle_assign/services/storage_service.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    final storageService = StorageService();
+    await storageService.init();
+
+    // Initialize services
+    final apiService = ApiService();
+    final weatherRepository = WeatherRepository(
+      apiService: apiService,
+      storageService: storageService,
+    );
+    await tester.pumpWidget(
+      MyApp(
+        weatherRepository: weatherRepository,
+        storageService: storageService,
+      ),
+    );
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
