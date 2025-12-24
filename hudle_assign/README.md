@@ -93,9 +93,11 @@ Implementing this weather app helped solidify concepts like:
 
 ##  Setup Instructions
 
-1. Clone the repository:
+1. Clone the repository and run:
    ```bash
    git clone <your-repo-url>
+   cd huddle_asssign
+   flutter run
 
 Challenges Faced & Solutions
 
